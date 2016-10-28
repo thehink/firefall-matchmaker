@@ -1,0 +1,73 @@
+[
+    {
+        "id": 0,
+        "matchId": 841,
+        "name": "Blackwater Anomaly",
+        "desc": "First located by Doctor Mitra Bathsheba, the Anomaly is in the remote Blackwater Swamp and is thought to be the weapon which destroyed Dredge and allowed the Melding to overrun Sertao.  It's true purpose and design, however, remain unknown.  Gathering intelligence on the Anomaly is a top priority for the Accord.",
+        "min_players": 2,
+        "max_players": 5,
+        "image": "/assets/in-game/matchmaker_v3/maps/MATCH_MAP_BLACKWATER_ANOMALY/tbn-98767fbd59bd05034a1c8c4612fbabb1.png",
+        "flags": [
+            {
+                "id": 0,
+                "name": "Casual",
+                "desc": "Complete the mission at your own pace.",
+                "checked": true
+            },
+            {
+                "id": 1,
+                "name": "Speed Run",
+                "desc": "Try to complete the mission as fast as possible."
+            },
+            {
+                "id": 2,
+                "name": "Sin Imprints",
+                "desc": "Collect all sin imprints during the mission."
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "matchId": 1021,
+        "name": "Jungle Cliffs",
+        "desc": "The Melding Repulsor at a remote cliffside Sin Outpost has gone offline. The Accord suspects that the Chosen may have activities in this area. Investigate the Outpost and eliminate any Chosen forces.",
+        "min_players": 2,
+        "max_players": 5,
+        "image": "/assets/in-game/matchmaker_v3/maps/MATCH_MAP_JUNGLE_CLIFFS/tbn-09d976ba37fe0900150dfe317041ec7d.png",
+        "flags": [
+            {
+                "id": 0,
+                "name": "Casual",
+                "desc": "Casual run",
+                "checked": true
+            },
+            {
+                "id": 1,
+                "name": "Speed Run",
+                "desc": "Complete the mission as fast as possible"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "matchId": 1121,
+        "name": "Tanken Cave",
+        "desc": "A Thumper containing a wealth of important resources is being held by Tanken Raiders. Recover the Thumper by moving it out of the Tanken subterranean base",
+        "min_players": 2,
+        "max_players": 5,
+        "image": "/assets/in-game/matchmaker_v3/maps/MATCH_MAP_TANKEN_CAVERNS/tbn-69474ca1e0b482307a14edea657ca96f.png",
+        "flags": [
+            {
+                "id": 0,
+                "name": "Casual",
+                "desc": "Casual run",
+                "checked": true
+            },
+            {
+                "id": 1,
+                "name": "Speed Run",
+                "desc": "Complete the mission as fast as possible"
+            }
+        ]
+    }
+]

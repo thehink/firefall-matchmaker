@@ -1,0 +1,122 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<Component xmlns="http://www.red5studios.com/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.red5studios.com/ ../../../../schemas/component.xsd">
+	<Info
+		title="Match Maker"
+		author="Ken Cheung"
+		description="For participating in PvP"
+		url="http://www.red5studios.com/"
+		uiVersion="1000"
+	/>
+
+	<!--
+	<Textures>
+		<Texture name="blank" src="N/A"/>
+	</Textures>
+	-->
+
+	<Events>
+		<Event name="ON_COMPONENT_LOAD"					bind="OnComponentLoad" />
+		
+		<Event name="ON_MATCH_QUEUE_RESPONSE"			bind="OnMatchQueueResponse" />
+		<Event name="MY_MATCH_QUEUE_RESPONSE"			bind="OnMatchQueueResponse" />
+	</Events>
+
+	<!--
+	<Styles>
+		<StyleSheet name="none"/>
+	</Styles>
+	-->
+	
+	<!--
+	<Colors>
+		<Color name="white" value="#FFFFFF"/>
+	</Colors>
+	-->
+
+	<BluePrints>
+		<!-- Blueprint for match modes tab-->
+		<BluePrint name="MatchTypeEntry" instantiable="true">
+			<StillArt dimensions="left:0; right:100%; center-y:50%; height:100%" style="texture:colors; region:white; tint:00ff00; alpha:0.0; eatsmice:false;"/>
+			<Text name="title" dimensions="top:0; left:30; right:100%; height:18" style="font:demi_12"/>
+			<Text name="description" dimensions="top:24; left:30; right:100%; height:12"  style="font:demi_8" />
+			
+			<FocusBox name="focus_box" dimensions="top:0; left:30; right:100%; height:40">
+				<Events>
+					<OnMouseEnter bind="GetFocus_MatchTypeEntry"/>
+					<OnMouseLeave bind="LoseFocus_MatchTypeEntry"/>
+					<OnGotFocus bind="GetFocus_MatchTypeEntry"/>
+					<OnLostFocus bind="LoseFocus_MatchTypeEntry"/>
+					<OnMouseUp bind="OnMatchTypeClick"/>
+				</Events>
+			</FocusBox>
+			
+			<CheckBox name="MatchType_Checkbox" dimensions="top:8; left:8; width:16; height:16;"  >
+				<Events>
+					<OnStateChanged bind="OnMatchTypeCheckbox"/>
+				</Events>
+			</CheckBox>
+			
+			<ListLayout name="MatchEntries" dimensions="left:0; right:100%; top:40; height:0" style="visible:false" />
+		</BluePrint>
+	
+		<!-- Blueprint for -->
+		<BluePrint name="MatchEntry" instantiable="true" >
+			<StillArt dimensions="left:0; right:100%; center-y:50%; height:100%" style="texture:colors; region:white; alpha:0.0; eatsmice:false;"/>
+			<Text name="title" dimensions="top:0; left:5%+20; right:100%; height:18" style="font:demi_10" />
+			<Text name="description" dimensions="top:30; left:0; right:100%; height:32" style="font:demi_8" />
+			<CheckBox name="Match_Checkbox" dimensions="top:8; left:5%; width:16; height:16;"  >
+				<Events>
+					<OnStateChanged bind="OnMatchCheckbox"/>
+				</Events>
+			</CheckBox>
+		</BluePrint>
+	</BluePrints>
+
+	<Frames>
+		<PanelFrame name="Main" dimensions="center-x:50%; center-y:50%-16; width:550; height:677" cheight="100" cwidth="100" visible="false" depth="1">
+			<Children>
+				<Group id="PopupFrame" dimensions="dock:fill" style="alpha:1" >
+				</Group>
+				
+				<Group id="Display" dimensions="dock:fill" >
+					<Group id= "upper" dimensions="left:0%; top:0; width:100%; height:100" >
+						<StillArt dimensions="dock:fill" style="texture:colors; region:white; tint:ff0000; alpha:0.0; eatsmice:false;"/>
+						
+						<Button id="Queue" key="{QUEUE}" dimensions="width:120; height:30; top:8; right:50%">
+							<Events>
+								<OnPrimaryAction bind="OnMatchQueue"/>
+							</Events>
+						</Button>
+						
+						<Button id="Unqueue" key="{UNQUEUE}" dimensions="width:120; height:30; top:8; left:50%">
+							<Events>
+								<OnPrimaryAction bind="OnMatchUnqueue"/>
+							</Events>
+						</Button>
+						
+						<Text name="bonus" key="{PVP_BONUS}" dimensions="top:40; left:0; right:100%; height:60" style="valign:center; halign:center;" />
+					</Group>
+					
+					<ListLayout id= "list" dimensions="left:0%; top:100; width:100%; bottom:100%-32" style="reverse:false"/>
+					
+					<Group id= "bottom" dimensions="left:0%; bottom:100%; width:100%; height:32" >
+						<StillArt dimensions="dock:fill" style="texture:colors; region:white; tint:0000ff; alpha:0.0; eatsmice:false;"/>
+						<Text key="AUTOREQUEUE_PVP" dimensions="center-y:50%; left:0; right:100%; height:18" style="font:demi_8; valign:center; halign:center;" />
+						<CheckBox id="AutoQueue_Checkbox" dimensions="top:8; left:8; width:16; height:16;" >
+							<Events>
+								<OnStateChanged bind="OnAutoReQueue"/>
+							</Events>
+						</CheckBox>
+					</Group>
+				</Group>			
+				
+			</Children>
+			<OnMessage bind="OnEvent"/>
+			<OnClose bind="OnEscape"/>
+		</PanelFrame>
+	</Frames>
+
+</Component>

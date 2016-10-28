@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket</title>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+   <!-- <script type="text/javascript" src="./socket.js"></script>-->
+    <script>
+		(function () {
+	
+	var Ready = false;
+	var Sockets = {};
+	
+	var numRef = 0;
+	function GetUniqueReference(){
+		return (++numRef).toString();
+	}
+	
+	function CallClient(funcName, arg1, arg2, arg3, arg4){
+		if (window.Red5 && window.Red5[funcName]) {
+			window.Red5[funcName](arg1, arg2, arg3, arg4);
+		}
+	}
+	
+	function OnGetData(name, data){
+		CallClient("OnGetData", name, data);
+	}
+	
+	Red5Callbacks = {};
+	
+	Red5Callbacks.cb_Func = function(FuncName, id){
+		if(Red5Callbacks[FuncName]){
+			var ret = Red5Callbacks[FuncName].apply(this, Array.prototype.slice.call(arguments, 2));
+			CallClient("OnWebCallback", id, ret);
+		}
+	}
+	
+	Red5Callbacks.Connect = function(url, test){
+		var Socket = io.connect(url);
+		Sockets[url] = Socket;
+		return url;
+	}
+	
+	Red5Callbacks.Reconnect = function(Ref){
+		if(Sockets[Ref]){
+			Sockets[Ref].socket.reconnect();
+		}
+	}
+	
+	Red5Callbacks.Disconnect = function(Ref){
+		if(Sockets[Ref]){
+			Sockets[Ref].disconnect();
+		}
+	}
+	
+	Red5Callbacks.On = function(Ref, name){
+		if(Sockets[Ref]){
+			Sockets[Ref].on(name, function(data){ OnGetData(name, data); });
+		}
+	}
+	
+	Red5Callbacks.Emit = function(Ref, arg1, arg2, arg3, arg4){
+		if(Sockets[Ref]){
+			Sockets[Ref].emit(arg1, arg2, arg3, arg4);
+		}
+	}
+	
+	Red5Callbacks.Send = function(Ref){
+		if(Sockets[Ref]){
+			Sockets[Ref].send.apply(this, Array.prototype.slice.call(arguments, 1));
+		}
+	}
+	
+	Red5Callbacks.OnReady = function(){
+		if (!Ready && typeof (window["Red5"]) != "undefined"){
+			Ready = true;
+			CallClient("OnSocketReady");
+		}
+	}
+
+}());
+	</script>
+  </head>
+  <body>
+	asdasd
+  </body>
+</html>

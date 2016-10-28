@@ -1,0 +1,18 @@
+[
+	{
+		"id": 0,
+		"name": "Normal Run",
+		"desc": "No worries of falling behind. You can complete the mission at your own pace.",
+		"checked": true
+	},
+	{
+		"id": 1,
+		"name": "Speed Run",
+		"desc": "Try to complete the mission as fast as possible."
+    },
+	{
+		"id": 2,
+		"name": "Sin Imprints",
+		"desc": "Collect all sin imprints during the mission."
+    }
+]
